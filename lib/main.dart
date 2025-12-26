@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(
-            0xFF55DF16,
+            0xFFF01F17,
           ), // Gleiche Ausgangsfarbe, aber andere Wirkung
           brightness: Brightness.dark,
         ),
