@@ -70,7 +70,27 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Expanded(child: ReusableCard()),
+          Expanded(
+            child: ReusableCard(
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text(
+                      'Weight',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      '175 cm',
+                      style: Theme.of(context).textTheme.displayLarge,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Expanded(
             child: Row(
               children: [

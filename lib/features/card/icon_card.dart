@@ -15,10 +15,9 @@ class IconCard extends StatelessWidget {
         SizedBox(height: 15),
         Text(
           label ?? '----',
-          style: TextStyle(
-            fontSize: 18,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium,
+          // fontSize: 18,
+          // color: Theme.of(context).colorScheme.primary,
         ),
       ],
     );
