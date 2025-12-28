@@ -53,30 +53,18 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      debugPrint('Male card tapped');
-
-                      toggleCardsGender(gender: Gender.man);
-                    },
-                    child: ReusableCard(
-                      cardPressed: cardManPressed,
-                      cardChild: IconCard(icon: Icons.man, label: 'Man'),
-                    ),
+                  child: ReusableCard(
+                    onPress: () => toggleCardsGender(gender: Gender.man),
+                    cardPressed: cardManPressed,
+                    cardChild: IconCard(icon: Icons.man, label: 'Man'),
                   ),
                 ),
 
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      debugPrint('Female card tapped');
-
-                      toggleCardsGender(gender: Gender.woman);
-                    },
-                    child: ReusableCard(
-                      cardPressed: cardWomanPressed,
-                      cardChild: IconCard(icon: Icons.woman, label: 'Woman'),
-                    ),
+                  child: ReusableCard(
+                    onPress: () => toggleCardsGender(gender: Gender.woman),
+                    cardPressed: cardWomanPressed,
+                    cardChild: IconCard(icon: Icons.woman, label: 'Woman'),
                   ),
                 ),
               ],
