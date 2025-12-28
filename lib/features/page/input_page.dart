@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+
+import '../card/icon_card.dart';
+import '../card/reusable_card.dart';
+
+// import 'package:bmi_calc_1/features/card/icon_card.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+enum Gender { man, woman }
 
 class InputPage extends StatefulWidget {
   const InputPage({super.key, required this.title});
@@ -12,6 +19,26 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Widget? get onPresed => null;
+
+  bool cardManPressed = false;
+  bool cardWomanPressed = false;
+
+  void toggleCardsGender({required Gender gender}) {
+    debugPrint('---->${gender.name}');
+
+    setState(() {
+      // if (gender.name == 'man') {
+      //   cardManPressed = !cardManPressed;
+      //   cardWomanPressed = false;
+      // } else if (gender.name == 'woman') {
+      //   cardWomanPressed = !cardWomanPressed;
+      //   cardManPressed = false;
+      // }
+      gender == Gender.man
+          ? {cardManPressed = !cardManPressed, cardWomanPressed = false}
+          : {cardWomanPressed = !cardWomanPressed, cardManPressed = false};
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +53,30 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: ReusableCard(
-                    cardHighlight: true,
-                    cardChild: IconCard(icon: Icons.man, label: 'Man'),
+                  child: GestureDetector(
+                    onTap: () {
+                      debugPrint('Male card tapped');
+
+                      toggleCardsGender(gender: Gender.man);
+                    },
+                    child: ReusableCard(
+                      cardPressed: cardManPressed,
+                      cardChild: IconCard(icon: Icons.man, label: 'Man'),
+                    ),
                   ),
                 ),
 
                 Expanded(
-                  child: ReusableCard(
-                    cardChild: IconCard(icon: Icons.woman, label: 'Woman'),
+                  child: GestureDetector(
+                    onTap: () {
+                      debugPrint('Female card tapped');
+
+                      toggleCardsGender(gender: Gender.woman);
+                    },
+                    child: ReusableCard(
+                      cardPressed: cardWomanPressed,
+                      cardChild: IconCard(icon: Icons.woman, label: 'Woman'),
+                    ),
                   ),
                 ),
               ],
@@ -78,58 +120,6 @@ class _InputPageState extends State<InputPage> {
       //   onPressed: () {},
       //   child: Icon(Icons.add),
       // ),
-    );
-  }
-}
-
-class IconCard extends StatelessWidget {
-  const IconCard({required this.icon, required this.label, super.key});
-
-  final IconData? icon;
-  final String? label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, size: 80, color: Theme.of(context).colorScheme.primary),
-        SizedBox(height: 15),
-        Text(
-          label ?? 'MALE',
-          style: TextStyle(
-            fontSize: 18,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  // const ReusableCard({super.key});
-
-  const ReusableCard({super.key, this.cardHighlight = false, this.cardChild});
-
-  final bool cardHighlight;
-  final Widget? cardChild;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        // color: Theme.of(context).colorScheme.primaryContainer,
-        // color: Theme.of(context).colorScheme.surfaceContainerLow,
-        color: cardHighlight
-            ? Theme.of(context).colorScheme.surfaceContainerHigh
-            : Theme.of(context).colorScheme.surfaceContainerLow,
-
-        //
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: cardChild,
     );
   }
 }
