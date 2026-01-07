@@ -22,6 +22,7 @@ class _InputPageState extends State<InputPage> {
 
   bool cardManPressed = false;
   bool cardWomanPressed = false;
+  double sliderHeight = 175;
 
   void toggleCardsGender({required Gender gender}) {
     debugPrint('---->${gender.name}');
@@ -37,6 +38,12 @@ class _InputPageState extends State<InputPage> {
       gender == Gender.man
           ? {cardManPressed = !cardManPressed, cardWomanPressed = false}
           : {cardWomanPressed = !cardWomanPressed, cardManPressed = false};
+    });
+  }
+
+  void onChangedHight(double value) {
+    setState(() {
+      sliderHeight = value;
     });
   }
 
@@ -75,16 +82,52 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Center(
-                    child: Text(
-                      'Weight',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
+                  Text(
+                    'Height',
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  Center(
-                    child: Text(
-                      '175 cm',
-                      style: Theme.of(context).textTheme.displayLarge,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        sliderHeight.round().toString(),
+                        style: Theme.of(context).textTheme.displayLarge,
+                      ),
+                      Text(
+                        ' cm',
+                        style: Theme.of(context).textTheme.displaySmall,
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
+                    child: SliderTheme(
+                      data: SliderThemeData(
+                        thumbColor: Colors.red,
+                        thumbShape: const RoundSliderThumbShape(
+                          enabledThumbRadius: 18.0,
+                        ),
+                        overlayShape: const RoundSliderOverlayShape(
+                          overlayRadius: 30.0,
+                        ),
+                        // activeTrackColor: Colors.white,
+                        // inactiveTrackColor: Colors.grey,
+                        overlayColor: Theme.of(
+                          context,
+                        ).colorScheme.primary.withAlpha(80),
+                      ),
+                      child: Slider(
+                        value: sliderHeight,
+                        onChanged: onChangedHight,
+                        min: 100,
+                        max: 250,
+                        // activeColor: Theme.of(context).colorScheme.inversePrimary,
+                        // inactiveColor: Theme.of(
+                        //   context,
+                        // ).colorScheme.inverseSurface,
+                      ),
                     ),
                   ),
                 ],
