@@ -23,6 +23,8 @@ class _InputPageState extends State<InputPage> {
   bool cardManPressed = false;
   bool cardWomanPressed = false;
   double sliderHeight = 175;
+  int weight = 75;
+  int age = 25;
 
   void toggleCardsGender({required Gender gender}) {
     debugPrint('---->${gender.name}');
@@ -137,7 +139,69 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReusableCard()),
+                Expanded(
+                  child: ReusableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Weight',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: Icons.add,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                            FloatingActionButton(
+                              shape: CircleBorder(
+                                side: BorderSide(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                  width: 2.0,
+                                ),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                              child: const Icon(Icons.add),
+                            ),
+                            const SizedBox(width: 20),
+                            FloatingActionButton(
+                              shape: CircleBorder(
+                                side: BorderSide(
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onSurface,
+                                  width: 2.0,
+                                ),
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                              child: const Icon(Icons.remove),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
                 Expanded(child: ReusableCard()),
               ],
             ),
@@ -171,6 +235,36 @@ class _InputPageState extends State<InputPage> {
       //   onPressed: () {},
       //   child: Icon(Icons.add),
       // ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  const RoundIconButton({
+    super.key,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: onPressed,
+      elevation: 16.0,
+      constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      // shape: const CircleBorder(),
+      shape: CircleBorder(
+        side: BorderSide(
+          color: Theme.of(context).colorScheme.onSurface,
+          width: 2.0,
+        ),
+      ),
+
+      fillColor: Theme.of(context).colorScheme.primaryContainer,
+      child: Icon(icon, fontWeight: FontWeight.bold),
     );
   }
 }
