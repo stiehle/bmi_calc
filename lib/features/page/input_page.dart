@@ -24,7 +24,7 @@ class _InputPageState extends State<InputPage> {
   bool cardWomanPressed = false;
   double sliderHeight = 175;
   int weight = 75;
-  int age = 25;
+  int age = 45;
 
   void toggleCardsGender({required Gender gender}) {
     debugPrint('---->${gender.name}');
@@ -163,38 +163,86 @@ class _InputPageState extends State<InputPage> {
                                 });
                               },
                             ),
-                            FloatingActionButton(
-                              shape: CircleBorder(
-                                side: BorderSide(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
-                                  width: 2.0,
-                                ),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  weight++;
-                                });
-                              },
-                              child: const Icon(Icons.add),
-                            ),
                             const SizedBox(width: 20),
-                            FloatingActionButton(
-                              shape: CircleBorder(
-                                side: BorderSide(
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onSurface,
-                                  width: 2.0,
-                                ),
-                              ),
+                            RoundIconButton(
+                              icon: Icons.remove,
                               onPressed: () {
                                 setState(() {
                                   weight--;
                                 });
                               },
-                              child: const Icon(Icons.remove),
+                            ),
+                            // FloatingActionButton(
+                            //   shape: CircleBorder(
+                            //     side: BorderSide(
+                            //       color: Theme.of(
+                            //         context,
+                            //       ).colorScheme.onSurface,
+                            //       width: 2.0,
+                            //     ),
+                            //   ),
+                            //   onPressed: () {
+                            //     setState(() {
+                            //       weight++;
+                            //     });
+                            //   },
+                            //   child: const Icon(Icons.add),
+                            // ),
+                            // const SizedBox(width: 20),
+                            // FloatingActionButton(
+                            //   shape: CircleBorder(
+                            //     side: BorderSide(
+                            //       color: Theme.of(
+                            //         context,
+                            //       ).colorScheme.onSurface,
+                            //       width: 2.0,
+                            //     ),
+                            //   ),
+                            //   onPressed: () {
+                            //     setState(() {
+                            //       weight--;
+                            //     });
+                            //   },
+                            //   child: const Icon(Icons.remove),
+                            // ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Age',
+                          style: Theme.of(context).textTheme.headlineMedium,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: Icons.add,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                            const SizedBox(width: 20),
+                            RoundIconButton(
+                              icon: Icons.remove,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -202,7 +250,6 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                 ),
-                Expanded(child: ReusableCard()),
               ],
             ),
           ),
@@ -253,7 +300,7 @@ class RoundIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return RawMaterialButton(
       onPressed: onPressed,
-      elevation: 16.0,
+      // elevation: 6.0,
       constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
       // shape: const CircleBorder(),
       shape: CircleBorder(
