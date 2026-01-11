@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../buttons/bottom_button.dart';
 import '../card/icon_card.dart';
 import '../card/reusable_card.dart';
+import '../buttons/bottom_button_new.dart';
 
 // import 'package:bmi_calc_1/features/card/icon_card.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -99,7 +101,7 @@ class _InputPageState extends State<InputPage> {
                       ),
                       Text(
                         ' cm',
-                        style: Theme.of(context).textTheme.displaySmall,
+                        style: Theme.of(context).textTheme.headlineLarge,
                       ),
                     ],
                   ),
@@ -150,7 +152,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Text(
                           weight.toString(),
-                          style: Theme.of(context).textTheme.displayLarge,
+                          style: Theme.of(context).textTheme.displayMedium,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -222,7 +224,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         Text(
                           age.toString(),
-                          style: Theme.of(context).textTheme.displayLarge,
+                          style: Theme.of(context).textTheme.displayMedium,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -253,22 +255,17 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: Theme.of(context).colorScheme.onPrimary,
-            height: 80,
-            child: Center(
-              child: GestureDetector(
-                onTap: () {},
-                child: Text(
-                  'Calculate Your BMI',
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-                ),
-              ),
-            ),
+          BottomButton(
+            text: 'Calculate Your BMI',
+            onPressed: () {
+              Navigator.pushNamed(context, '/calculate');
+            },
+          ),
+          BottomButtonNew(
+            text: 'Calculate Your BMI',
+            onPressed: () {
+              Navigator.pushNamed(context, '/calculate');
+            },
           ),
         ],
       ),
@@ -285,6 +282,38 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+
+// class BottomButton extends StatelessWidget {
+//   const BottomButton({super.key, required this.text, required this.onPressed});
+
+//   final String text;
+//   final VoidCallback onPressed;
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color: Theme.of(context).colorScheme.onPrimary,
+//       height: 80,
+//       child: Center(
+//         child: GestureDetector(
+//           onTap: () {
+//             // Navigator.pushNamed(context, '/calculate');
+//             onPressed();
+//           },
+//           child: Text(
+//             // 'Calculate Your BMI',
+//             text,
+//             style: TextStyle(
+//               fontSize: 25,
+//               fontWeight: FontWeight.bold,
+//               color: Theme.of(context).colorScheme.primary,
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class RoundIconButton extends StatelessWidget {
   const RoundIconButton({

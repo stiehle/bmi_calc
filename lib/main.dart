@@ -1,3 +1,4 @@
+import 'package:bmi_calc_1/features/page/result_page.dart';
 import 'package:flutter/material.dart';
 import 'features/page/input_page.dart';
 
@@ -24,7 +25,17 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           displayLarge: TextStyle(
             // color: Colors.white,
-            // fontSize: 50,
+            fontSize: 100,
+            fontWeight: FontWeight.bold,
+          ),
+          displayMedium: TextStyle(
+            // color: Colors.white,
+            fontSize: 60,
+            fontWeight: FontWeight.bold,
+          ),
+          displaySmall: TextStyle(
+            color: Colors.green,
+            fontSize: 60,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -35,7 +46,12 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      home: const InputPage(title: 'BMI Calculator'),
+      // home: const InputPage(title: 'BMI Calculator'),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const InputPage(title: 'BMI Calculator'),
+        '/calculate': (context) => const ResultPage(),
+      },
 
       // theme: ThemeData.dark().copyWith(
       //   colorScheme: ColorScheme.fromSeed(
