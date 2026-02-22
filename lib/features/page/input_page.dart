@@ -1,7 +1,7 @@
 import 'package:bmi_calc_1/features/page/result_page.dart';
 import 'package:flutter/material.dart';
 
-import '../buttons/bottom_button.dart';
+// import '../buttons/bottom_button.dart';
 import '../card/icon_card.dart';
 import '../card/reusable_card.dart';
 import '../buttons/bottom_button_new.dart';
@@ -89,23 +89,14 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Height',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
+                  Text('Height', style: Theme.of(context).textTheme.headlineMedium),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.baseline,
                     textBaseline: TextBaseline.alphabetic,
                     children: [
-                      Text(
-                        sliderHeight.round().toString(),
-                        style: Theme.of(context).textTheme.displayLarge,
-                      ),
-                      Text(
-                        ' cm',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
+                      Text(sliderHeight.round().toString(), style: Theme.of(context).textTheme.displayLarge),
+                      Text(' cm', style: Theme.of(context).textTheme.headlineLarge),
                     ],
                   ),
                   Padding(
@@ -113,17 +104,11 @@ class _InputPageState extends State<InputPage> {
                     child: SliderTheme(
                       data: SliderThemeData(
                         thumbColor: Colors.red,
-                        thumbShape: const RoundSliderThumbShape(
-                          enabledThumbRadius: 12.0,
-                        ),
-                        overlayShape: const RoundSliderOverlayShape(
-                          overlayRadius: 20.0,
-                        ),
+                        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 12.0),
+                        overlayShape: const RoundSliderOverlayShape(overlayRadius: 20.0),
                         // activeTrackColor: Colors.white,
                         // inactiveTrackColor: Colors.grey,
-                        overlayColor: Theme.of(
-                          context,
-                        ).colorScheme.primary.withAlpha(80),
+                        overlayColor: Theme.of(context).colorScheme.primary.withAlpha(80),
                       ),
                       child: Slider(
                         value: sliderHeight,
@@ -149,14 +134,8 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Weight',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                        Text(
-                          weight.toString(),
-                          style: Theme.of(context).textTheme.displayMedium,
-                        ),
+                        Text('Weight', style: Theme.of(context).textTheme.headlineMedium),
+                        Text(weight.toString(), style: Theme.of(context).textTheme.displayMedium),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -221,14 +200,8 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'Age',
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                        Text(
-                          age.toString(),
-                          style: Theme.of(context).textTheme.displayMedium,
-                        ),
+                        Text('Age', style: Theme.of(context).textTheme.headlineMedium),
+                        Text(age.toString(), style: Theme.of(context).textTheme.displayMedium),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -267,10 +240,7 @@ class _InputPageState extends State<InputPage> {
           BottomButtonNew(
             text: 'Calculate Your BMI',
             onPressed: () {
-              CalculatorBrain calc = CalculatorBrain(
-                height: sliderHeight.round(),
-                weight: weight,
-              );
+              CalculatorBrain calc = CalculatorBrain(height: sliderHeight.round(), weight: weight);
 
               // Navigator.pushNamed(context, '/calculate');
               Navigator.push(
@@ -334,11 +304,7 @@ class _InputPageState extends State<InputPage> {
 // }
 
 class RoundIconButton extends StatelessWidget {
-  const RoundIconButton({
-    super.key,
-    required this.icon,
-    required this.onPressed,
-  });
+  const RoundIconButton({super.key, required this.icon, required this.onPressed});
 
   final IconData icon;
   final VoidCallback onPressed;
@@ -350,12 +316,7 @@ class RoundIconButton extends StatelessWidget {
       // elevation: 6.0,
       constraints: const BoxConstraints.tightFor(width: 56.0, height: 56.0),
       // shape: const CircleBorder(),
-      shape: CircleBorder(
-        side: BorderSide(
-          color: Theme.of(context).colorScheme.onSurface,
-          width: 2.0,
-        ),
-      ),
+      shape: CircleBorder(side: BorderSide(color: Theme.of(context).colorScheme.onSurface, width: 2.0)),
 
       fillColor: Theme.of(context).colorScheme.primaryContainer,
       child: Icon(icon, fontWeight: FontWeight.bold),

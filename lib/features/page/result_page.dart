@@ -7,16 +7,11 @@ import '../buttons/bottom_button_new.dart';
 class ResultPage extends StatelessWidget {
   // const ResultPage({super.key});
 
-  ResultPage({
-    super.key,
-    required this.bmiResult,
-    required this.resultText,
-    required this.interpretation,
-  });
+  const ResultPage({super.key, required this.bmiResult, required this.resultText, required this.interpretation});
 
-  String bmiResult = '24.5';
-  String resultText = 'Normal';
-  String interpretation = 'You have a normal body weight. Good job!';
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +24,7 @@ class ResultPage extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.all(15),
               alignment: Alignment.bottomLeft,
-              child: Text(
-                'Your Result',
-                style: Theme.of(context).textTheme.headlineLarge,
-              ),
+              child: Text('Your Result', style: Theme.of(context).textTheme.headlineLarge),
             ),
           ),
           Expanded(
@@ -42,21 +34,9 @@ class ResultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    textAlign: TextAlign.center,
-                    'Normal',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                  Text(
-                    '24.5 ',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.displayLarge,
-                  ),
-                  Text(
-                    'You have a normal body weight. Good job!',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
+                  Text(textAlign: TextAlign.center, resultText, style: Theme.of(context).textTheme.displaySmall),
+                  Text(bmiResult, textAlign: TextAlign.center, style: Theme.of(context).textTheme.displayLarge),
+                  Text(interpretation, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineMedium),
                 ],
               ),
             ),
