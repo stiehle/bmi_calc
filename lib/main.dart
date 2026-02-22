@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         textTheme: TextTheme(
           displayLarge: TextStyle(
             // color: Colors.white,
-            fontSize: 100,
+            fontSize: 80,
             fontWeight: FontWeight.bold,
           ),
           displayMedium: TextStyle(
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const InputPage(title: 'BMI Calculator'),
-        '/calculate': (context) => const ResultPage(),
+        //'/calculate': (context) => const ResultPage(),
       },
 
       // theme: ThemeData.dark().copyWith(

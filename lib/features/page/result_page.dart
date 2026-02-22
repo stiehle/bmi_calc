@@ -1,11 +1,22 @@
-import 'package:bmi_calc_1/features/buttons/bottom_button.dart';
+// import 'package:bmi_calc_1/features/buttons/bottom_button.dart';
 import 'package:bmi_calc_1/features/card/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 import '../buttons/bottom_button_new.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
+  // const ResultPage({super.key});
+
+  ResultPage({
+    super.key,
+    required this.bmiResult,
+    required this.resultText,
+    required this.interpretation,
+  });
+
+  String bmiResult = '24.5';
+  String resultText = 'Normal';
+  String interpretation = 'You have a normal body weight. Good job!';
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +48,7 @@ class ResultPage extends StatelessWidget {
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                   Text(
-                    '22.5',
+                    '24.5 ',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.displayLarge,
                   ),

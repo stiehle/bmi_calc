@@ -1,9 +1,12 @@
+import 'package:bmi_calc_1/features/page/result_page.dart';
 import 'package:flutter/material.dart';
 
 import '../buttons/bottom_button.dart';
 import '../card/icon_card.dart';
 import '../card/reusable_card.dart';
 import '../buttons/bottom_button_new.dart';
+
+import '../calculator_brain.dart';
 
 // import 'package:bmi_calc_1/features/card/icon_card.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -106,15 +109,15 @@ class _InputPageState extends State<InputPage> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
+                    padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
                     child: SliderTheme(
                       data: SliderThemeData(
                         thumbColor: Colors.red,
                         thumbShape: const RoundSliderThumbShape(
-                          enabledThumbRadius: 18.0,
+                          enabledThumbRadius: 12.0,
                         ),
                         overlayShape: const RoundSliderOverlayShape(
-                          overlayRadius: 30.0,
+                          overlayRadius: 20.0,
                         ),
                         // activeTrackColor: Colors.white,
                         // inactiveTrackColor: Colors.grey,
@@ -255,16 +258,31 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          BottomButton(
-            text: 'Calculate Your BMI',
-            onPressed: () {
-              Navigator.pushNamed(context, '/calculate');
-            },
-          ),
+          // BottomButton(
+          //   text: 'Calculate Your BMI',
+          //   onPressed: () {
+          //     Navigator.pushNamed(context, '/calculate');
+          //   },
+          // ),
           BottomButtonNew(
             text: 'Calculate Your BMI',
             onPressed: () {
-              Navigator.pushNamed(context, '/calculate');
+              CalculatorBrain calc = CalculatorBrain(
+                height: sliderHeight.round(),
+                weight: weight,
+              );
+
+              // Navigator.pushNamed(context, '/calculate');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(
+                    bmiResult: calc.calculateBMI(),
+                    resultText: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
             },
           ),
         ],
